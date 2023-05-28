@@ -1,0 +1,19 @@
+{
+  "name": "acsl",
+  "displayName": "acsl",
+  "description": "acsl",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.78.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "grammars": [{
+      "scopeName": "acsl.injection",
+      "injectTo": ["source.c"],
+      "path": "./syntaxes/injection.json"
+    }]
+  }
+}

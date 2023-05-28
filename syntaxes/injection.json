@@ -1,0 +1,90 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "C",
+	"scopeName": "acsl.injection",
+	"injectionSelector": "L:comment.block.c",
+	"patterns": [
+		{
+			"name": "meta.embedded.acsl",
+			"begin": "@",
+			"end": "(?=\\*/)",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.control.c"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		}
+	],
+	"repository": {
+		"expression": {
+			"patterns": [
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#operators"
+				},
+				{
+					"name": "comment.line.double-slash",
+					"match": "//.*"
+				},
+				{
+					"include": "#paren-expression"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.c",
+					"match": "\\b(requires|assigns|ensures|predicate|logic|struct|behavior|assumes|complete behaviors|disjoint behaviors)\\b"
+				},
+				{
+					"name": "keyword.control.c",
+					"match": "\\\\(valid|forall|result)"
+				},
+				{
+					"name": "constant.language.c",
+					"match": "\\\\(null|nothing|true|false)"
+				},
+				{
+					"name": "keyword.other",
+					"match": "sizeof"
+				}
+			]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.c",
+					"match": "(<==>|<=|>=|<|>|==>|==|;|:|&&|\\?|\\|\\|)"
+				}
+			]
+		},
+		"paren-expression": {
+			"begin": "\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.paren.open"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.paren.close"
+				}
+			},
+			"name": "expression.group",
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		}
+	}
+}
